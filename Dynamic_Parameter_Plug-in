@@ -1,0 +1,16 @@
+Add plugin update manager into jenkins:-   & install " Dynamic Parameter Plug-in"
+
+step 1. install plugin in jenkins--------------->>  UpdateSites Manager
+step 2. goto Manage_jenkins
+                |
+                .---->Manage UpdatesSites------> click on "CHECK NOW" 
+step 3. goto Manage_Plugin-------> search "Active Choices" and install it.
+step 4. goto your project get into CONFIGURE; select ADD_PARAMETER in THIS _PROJECT_IS_PARAMETERIZED
+          \..>> PASTE THIS CODE:-
+          
+                  def gettags = ("git ls-remote -t -h https://USER:PASS@bitbucket.org/project_name.git").execute()
+                  return gettags.text.readLines().collect { 
+                  it.split()[1].replaceAll('refs/heads/', '').replaceAll('refs/tags/', '').replaceAll("\\^\\{\\}", '')
+                  }
+              --------------------------------------
+              
