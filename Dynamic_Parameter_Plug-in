@@ -1,5 +1,7 @@
 Add plugin update manager into jenkins:-   & install " Dynamic Parameter Plug-in"
 
+Goto this website:--------->    http://biouno.org/jenkins-update-site.html
+
 step 1. install plugin in jenkins--------------->>  UpdateSites Manager
 step 2. goto Manage_jenkins
                 |
