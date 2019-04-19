@@ -100,6 +100,7 @@ artifacts-------------------> Copy artifacts
     SMTP Server = smtp.gmail.com
     username = *****@gmail.com
     password = *****************
+    SSL ~ (Tick on it)
     port = 465
 
 2. Environment variable
