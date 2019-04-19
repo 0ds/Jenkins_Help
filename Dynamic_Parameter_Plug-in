@@ -5,9 +5,10 @@ Goto this website:--------->    http://biouno.org/jenkins-update-site.html
 step 1. install plugin in jenkins--------------->>  UpdateSites Manager
 step 2. goto Manage_jenkins
                 |
-                .---->Manage UpdatesSites------> click on "CHECK NOW" 
-step 3. goto Manage_Plugin-------> search "Active Choices" and install it.
-step 4. goto your project get into CONFIGURE; select ADD_PARAMETER in THIS _PROJECT_IS_PARAMETERIZED
+                .---->Manage UpdatesSites------> Input the entries of the Site server details (then click on save)
+step 3. goto Manage_plugin--------> and scroll down and click on check now                
+step 4. goto Manage_Plugin-------> search "Active Choices" and install it.
+step 5. goto your project get into CONFIGURE; select ADD_PARAMETER in THIS _PROJECT_IS_PARAMETERIZED
           \..>> PASTE THIS CODE:-
           
                   def gettags = ("git ls-remote -t -h https://USER:PASS@bitbucket.org/project_name.git").execute()
