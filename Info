@@ -1,0 +1,150 @@
+1. To update jenkins----> /usr/share/jenkins/jenkins.war
+2. remove password check:-
+	Edit into------>/var/lib/docker/volumes/jenkins/_data/config.xml
+			<useSecurity>true</useSecurity> ==========================> turn security check "FALSE" from "TRUE"
+-----------------------------------------------------------------------------------------------------------------------------------
+#Jenkinsfile can be written using two types of syntax - Declarative and Scripted:-
+    
+    When Jenkins Pipeline was first created, Groovy was selected as the foundation. Jenkins has long shipped with an embedded 
+    Groovy engine to provide 	  advanced scripting capabilities for admins and users alike. Additionally, the implementors of 
+    Jenkins Pipeline found Groovy to be a solid foundation upon which to build what is now referred to as the "Scripted Pipeline" DSL.
+    As it is a fully featured programming environment, Scripted Pipeline offers a tremendous amount of flexibility and 
+    extensibility to Jenkins users. The Groovy learning-curve isn’t typically desirable for all members of a given team, 
+    so Declarative Pipeline was created to offer a simpler and more opinionated syntax for authoring Jenkins Pipeline.
+    The two are both fundamentally the same Pipeline sub-system underneath. They are both durable implementations of "Pipeline
+    as code." They are both able to use steps built into Pipeline or provided by plugins. Both are able to utilize Shared Libraries
+    Where they differ however is in syntax and flexibility. Declarative limits what is available to the user with a more
+    strict and pre-defined structure, making it an ideal choice for simpler continuous delivery pipelines. Scripted provides 
+    very few limits, insofar that the only limits on structure and syntax tend to be defined by Groovy itself, rather than 
+    any Pipeline-specific systems, making it an ideal choice for power-users and those with more complex requirements. 
+    As the name implies, Declarative Pipeline encourages a declarative programming model. Whereas Scripted Pipelines follow 
+    a more imperative programming model.
+
+Jenkinsfile (Scripted Pipeline)                               Jenkinsfile (Declarative Pipeline)
+node {                                                        pipeline {
+    stage('Build') {                                             agent any 
+        //                                                        stages {
+    }                                                               stage('Build') { 
+    stage('Test') {                                                    steps {
+        //                                                                //
+    }                                                                  }
+    stage('Deploy') {                                                 }  
+        //                                                          stage('Test') { 
+    }                                                                  steps {
+   }                                                                   //  
+                                                                        }
+                                                                       }
+                                                                    stage('Deploy') {
+                                                                        steps {
+                                                                        //
+                                                                        }
+                                                                       }
+                                                                     }
+                                                                    }
+----------------------------------------------------------------------------------------------------------------------------    
+
+Pipeline Syntax Generator:-
+ 1. snippet generator
+ 2. Declarative directive Generator
+Reference doc
+ 1. Steps Reference -----> try() {...} catch(err) {...}
+
+Declarative Direcctive Generator:-
+-----------------------------------
+1. environment: Environment 
+>>>	environment {
+	  new = "1, 2, 3"
+	}
+2. stage: Stage  ---->     STEPS
+	                  		------------
+			                  1. parallel stages   (didn't used Syntax_Generator)
+		                    2. Sequential stages
+	a). Sequential stage:-
+		stage('scm checkout') {
+                stages {
+		    // One or more stages need to be included within the stages block.
+  		}
+		}
+	b). parallel stages:-
+		 parallel firstbranch: {
+                 stage('compile-package')
+       		{...}
+       			}, secondbranch: {
+       		stage('checkstyle')
+                {...}
+                        }, failFast: true
+
+Snippet Generator:-
+----------------------------------
+1. tools: use a tool from a predefined tool installation
+     maven:
+     >>>tool name: 'maven3.6.1', type: 'maven'
+ in Jenkins file  >>>>    def mvnHome = tool name: 'maven 3.6.0', type: 'maven'
+                          sh "${mvnHome}/bin/mvn  -B -DskipTests clean package"
+
+2. withSonarQubeEnv: Prepare SonarQube Scanner Environment
+      withSonarQubeEnv {
+    // some block
+    }
+ In JenkinsFile >>>>  withSonarQubeEnv('sonarqube') {
+                      sh "${sonarHome}/bin/sonar-scanner"}
+                      }
+                       
+3. archiveArtifacts: Archive The Artifacts
+            >>> archiveArtifacts artifacts: '.war', excludes: '.log', onlyIfSuccessful: true   ----> Option archive only when the built is successfull
+            
+
+
+
+
+
+
+
+				PLUGIN
+Global Env. variable--------> Global variable string parameter 
+sonarqube-------------------> SonarQube Scanner For Jenkins
+pipeline view---------------> Build pipeline Plugin
+pipeline--------------------> pipeline
+parameter----------> 1. static ----> choice parameter   (comes as Default)
+		                 2. Dynamic----> 
+artifacts-------------------> Copy artifacts
+
+
+      Configure Tools
+----------------------------
+1. Email:-
+    SMTP Server = smtp.gmail.com
+    username = *****@gmail.com
+    password = *****************
+    port = 465
+
+2. Environment variable
+    configure ----> global properties
+                        |
+                        .------> Environment Variable (Enable it)
+                                   name =  ***
+                                   value = ***
+3. Sonarqube Scanner
+    configure
+      | 
+      .-----> SonarQube Server
+              Name =
+              Server URL =
+              Server Authentication Token = 
+              
+             
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
