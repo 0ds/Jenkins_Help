@@ -2,6 +2,7 @@
 2. remove password check:-
 	Edit into------>/var/lib/docker/volumes/jenkins/_data/config.xml
 			<useSecurity>true</useSecurity> ==========================> turn security check "FALSE" from "TRUE"
+3. github Webhoook----------> http://10.0.7.17/github-webhook/			
 -----------------------------------------------------------------------------------------------------------------------------------
 #Jenkinsfile can be written using two types of syntax - Declarative and Scripted:-
     
