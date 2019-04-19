@@ -73,7 +73,17 @@ Declarative Direcctive Generator:-
        		stage('checkstyle')
                 {...}
                         }, failFast: true
-
+3. parameters:Parameters ----------------------> Extended choise parameter / Dynamic Choice parameter
+	name:
+	description:
+Basic Parameter Type:
+   \....>   parameter type:
+            Number of visible items:
+	    Delimiter
+Choose Source for Value
+    \....>  Groovy Script: 
+	
+    
 Snippet Generator:-
 ----------------------------------
 1. tools: use a tool from a predefined tool installation
@@ -92,21 +102,27 @@ Snippet Generator:-
                        
 3. archiveArtifacts: Archive The Artifacts
             >>> archiveArtifacts artifacts: '.war', excludes: '.log', onlyIfSuccessful: true   ----> Option archive only when the built is successfull
-            
+	    
+4. checkstyle: [Depricated] publish checkstyle analysis result
+		checkstyle result = (dont input any thing not needed its available to change view)	
+	>>> checkstyle canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
+  In JenkinsFile >>> stage('checkstyle'){
+        		  def mvnHome = tool name: 'maven 3.6.0', type: 'maven'
+           		  sh "${mvnHome}/bin/mvn checkstyle:checkstyle"
+          		  checkstyle canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
+       			}
+	
 
 
 
-
-
-
-
-				PLUGIN
+		PLUGIN's
+-------------------------------------------------------------		
 Global Env. variable--------> Global variable string parameter 
 sonarqube-------------------> SonarQube Scanner For Jenkins
 pipeline view---------------> Build pipeline Plugin
 pipeline--------------------> pipeline
 parameter----------> 1. static ----> choice parameter   (comes as Default)
-		                 2. Dynamic----> 
+		     2. Dynamic----> Extended Choice parameter
 artifacts-------------------> Copy artifacts
 
 
@@ -128,9 +144,10 @@ artifacts-------------------> Copy artifacts
     configure
       | 
       .-----> SonarQube Server
-              Name =
-              Server URL =
-              Server Authentication Token = 
+              Name = Sonar
+              Server URL = http://192.168.121.221:8081/
+              Server Authentication Token =  ***************
+	      
               
              
 
