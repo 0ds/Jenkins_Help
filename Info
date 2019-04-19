@@ -124,6 +124,7 @@ pipeline--------------------> pipeline
 parameter----------> 1. static ----> choice parameter   (comes as Default)
 		     2. Dynamic----> Extended Choice parameter
 artifacts-------------------> Copy artifacts
+3rd party pluins------------> UpdateSites Manager
 
 
       Configure Tools
